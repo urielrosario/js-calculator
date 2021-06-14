@@ -15,7 +15,7 @@ const calcDisplay = document.querySelector("input");
 
 const btnAdd = document.querySelector(".btn.add");
 const btnSub = document.querySelector(".btn.sub");
-const btnDiv = document.querySelector(".btn.div");
+const btnDiv = document.querySelector(".btn.dv");
 const btnMlt = document.querySelector(".btn.mlt");
 const btnEq = document.querySelector(".equalbtn");
 const btnAC = document.querySelector(".btn.ac");
@@ -32,6 +32,53 @@ allBtns.forEach((button) => {
     calcDisplay.value += allBtn;
   });
 });
+// Clear BTN
+btnAC.addEventListener("click", () => {
+  calcDisplay.value = "";
+});
+
+// dot period
+btnDot.addEventListener("click", () => {
+  if (!calcDisplay.value.includes(".")) {
+    dotValue = ".";
+    calcDisplay.value += dotValue;
+  } else {
+    return;
+  }
+});
+// add BTN
+btnAdd.addEventListener("click", () => {
+  operator = "add";
+  value1 = calcDisplay.value;
+  calcDisplay.value = "";
+});
+
+// substract BTN
+btnSub.addEventListener("click", () => {
+  operator = "sub";
+  value1 = calcDisplay.value;
+  calcDisplay.value = "";
+});
+
+// divide BTN
+btnDiv.addEventListener("click", () => {
+  operator = "div";
+  value1 = calcDisplay.value;
+  calcDisplay.value = "";
+});
+
+// mlt BTN
+btnMlt.addEventListener("click", () => {
+  operator = "mlt";
+  value1 = calcDisplay.value;
+  calcDisplay.value = "";
+});
+
+// equal BTN
+btnEq.addEventListener("click", () => {
+  value2 = calcDisplay.value;
+  calculate();
+});
 
 function calculate() {
   switch (operator) {
@@ -41,18 +88,19 @@ function calculate() {
       break;
 
     case "sub":
-      result = Number(value1) + Number(value2);
+      result = Number(value1) - Number(value2);
       calcDisplay.value = result;
       break;
 
     case "div":
-      result = Number(value1) + Number(value2);
+      result = Number(value1) / Number(value2);
       calcDisplay.value = result;
       break;
 
     case "mlt":
-      result = Number(value1) + Number(value2);
+      result = Number(value1) * Number(value2);
       calcDisplay.value = result;
       break;
   }
 }
+// console.log(operator);
